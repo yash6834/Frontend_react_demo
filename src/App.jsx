@@ -38,6 +38,34 @@ function App() {
     password: '',
   })
   const [submittedData, setSubmittedData] = useState([])
+  const [errors, setErrors] = useState({})
+
+  function validateForm(data) {
+    const nextErrors = {}
+
+    if (!data.firstName.trim()) {
+      nextErrors.firstName = 'Required'
+    }
+    if (!data.lastName.trim()) {
+      nextErrors.lastName = 'Required'
+    }
+    if (!data.email.trim()) {
+      nextErrors.email = 'Required'
+    }
+    if (!data.phone.trim()) {
+      nextErrors.phone = 'Required'
+    }
+    if (!data.membership) {
+      nextErrors.membership = 'Required'
+    }
+    if (!data.password.trim()) {
+      nextErrors.password = 'Required'
+    } else if (data.password.length < 6) {
+      nextErrors.password = 'Password must be at least 6 characters'
+    }
+
+    return nextErrors
+  }
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -45,11 +73,23 @@ function App() {
       ...current,
       [name]: value,
     }))
+    setErrors((current) => ({
+      ...current,
+      [name]: '',
+    }))
   }
 
   function handleSubmit(event) {
     event.preventDefault()
+    const nextErrors = validateForm(formData)
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors)
+      return
+    }
+
     setSubmittedData((current) => [...current, formData])
+    setErrors({})
     setFormData({
       firstName: '',
       lastName: '',
@@ -64,7 +104,7 @@ function App() {
     <main className="app">
       <section className="subscription-layout">
         <section className="form-card" aria-labelledby="registration-title">
-          <form className="registration-form" onSubmit={handleSubmit}>
+          <form className="registration-form" onSubmit={handleSubmit} noValidate>
             <div className="form-heading">
               <h2 id="registration-title">Library Registration Form</h2>
               <p>Fill in the form and see the submitted details below.</p>
@@ -79,8 +119,9 @@ function App() {
                   placeholder="Enter first name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
+                  className={errors.firstName ? 'input-error' : ''}
                 />
+                {errors.firstName ? <small className="error-text">{errors.firstName}</small> : null}
               </label>
 
               <label>
@@ -91,8 +132,9 @@ function App() {
                   placeholder="Enter last name"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
+                  className={errors.lastName ? 'input-error' : ''}
                 />
+                {errors.lastName ? <small className="error-text">{errors.lastName}</small> : null}
               </label>
 
               <label>
@@ -103,8 +145,9 @@ function App() {
                   placeholder="Enter email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  className={errors.email ? 'input-error' : ''}
                 />
+                {errors.email ? <small className="error-text">{errors.email}</small> : null}
               </label>
 
               <label>
@@ -115,8 +158,9 @@ function App() {
                   placeholder="Enter phone number"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
+                  className={errors.phone ? 'input-error' : ''}
                 />
+                {errors.phone ? <small className="error-text">{errors.phone}</small> : null}
               </label>
 
               <label>
@@ -125,7 +169,7 @@ function App() {
                   name="membership"
                   value={formData.membership}
                   onChange={handleChange}
-                  required
+                  className={errors.membership ? 'input-error' : ''}
                 >
                   <option value="" disabled>
                     Select a plan
@@ -136,6 +180,9 @@ function App() {
                     </option>
                   ))}
                 </select>
+                {errors.membership ? (
+                  <small className="error-text">{errors.membership}</small>
+                ) : null}
               </label>
 
               <label>
@@ -146,9 +193,9 @@ function App() {
                   placeholder="Enter password"
                   value={formData.password}
                   onChange={handleChange}
-                  required
-                  minLength={6}
+                  className={errors.password ? 'input-error' : ''}
                 />
+                {errors.password ? <small className="error-text">{errors.password}</small> : null}
               </label>
             </div>
 

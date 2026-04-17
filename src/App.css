@@ -62,8 +62,7 @@
   background: #ffffff;
 }
 
-.registration-form input:invalid,
-.registration-form select:invalid {
+.registration-form .input-error {
   border-color: #d35454;
 }
 
@@ -81,6 +80,12 @@
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .details-section {
