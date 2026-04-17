@@ -49,12 +49,28 @@
   font-weight: 500;
 }
 
+.registration-form label span::after {
+  content: ' *';
+  color: #c0392b;
+}
+
 .registration-form input,
 .registration-form select {
   padding: 12px;
   border: 1px solid #cccccc;
   border-radius: 8px;
   background: #ffffff;
+}
+
+.registration-form input:invalid,
+.registration-form select:invalid {
+  border-color: #d35454;
+}
+
+.registration-form input:focus,
+.registration-form select:focus {
+  outline: none;
+  border-color: #222222;
 }
 
 .registration-form button {

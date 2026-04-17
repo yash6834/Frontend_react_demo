@@ -56,6 +56,7 @@ function App() {
       email: '',
       phone: '',
       membership: '',
+      password: '',
     })
   }
 
@@ -78,6 +79,7 @@ function App() {
                   placeholder="Enter first name"
                   value={formData.firstName}
                   onChange={handleChange}
+                  required
                 />
               </label>
 
@@ -89,6 +91,7 @@ function App() {
                   placeholder="Enter last name"
                   value={formData.lastName}
                   onChange={handleChange}
+                  required
                 />
               </label>
 
@@ -100,6 +103,7 @@ function App() {
                   placeholder="Enter email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </label>
 
@@ -111,6 +115,7 @@ function App() {
                   placeholder="Enter phone number"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                 />
               </label>
 
@@ -120,6 +125,7 @@ function App() {
                   name="membership"
                   value={formData.membership}
                   onChange={handleChange}
+                  required
                 >
                   <option value="" disabled>
                     Select a plan
@@ -140,6 +146,8 @@ function App() {
                   placeholder="Enter password"
                   value={formData.password}
                   onChange={handleChange}
+                  required
+                  minLength={6}
                 />
               </label>
             </div>
@@ -168,8 +176,7 @@ function App() {
                         <td>{entry.lastName}</td>
                         <td>{entry.email}</td>
                         <td>{entry.phone}</td>
-                        <td>{entry.membership}</td>
-                        
+                        <td>{entry.membership}</td>                        
                       </tr>
                     ))}
                   </tbody>
