@@ -4,12 +4,16 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #f4f4f4;
+  background: #f3f0ea;
+}
+
+.subscription-layout {
+  width: 100%;
+  max-width: 760px;
 }
 
 .form-card {
   width: 100%;
-  max-width: 420px;
   background: #ffffff;
   padding: 24px;
   border-radius: 12px;
@@ -22,7 +26,7 @@
   gap: 16px;
 }
 
-.form-heading h1 {
+.form-heading h2 {
   margin: 0 0 8px;
   font-size: 28px;
 }
@@ -45,10 +49,12 @@
   font-weight: 500;
 }
 
-.registration-form input {
+.registration-form input,
+.registration-form select {
   padding: 12px;
   border: 1px solid #cccccc;
   border-radius: 8px;
+  background: #ffffff;
 }
 
 .registration-form button {
@@ -59,4 +65,76 @@
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+}
+
+.details-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e7e1d8;
+}
+
+.details-section h3 {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.details-table th,
+.details-table td {
+  padding: 12px 14px;
+  border: 1px solid #ddd4c7;
+  text-align: left;
+}
+
+.details-table th {
+  background: #eee5d8;
+  font-weight: 700;
+}
+
+.details-table td {
+  background: #faf8f3;
+}
+
+.plan-list {
+  display: grid;
+  gap: 14px;
+}
+
+.plan-card {
+  padding: 18px;
+  border: 1px solid #ddd4c7;
+  border-radius: 10px;
+  background: #faf8f3;
+}
+
+.plan-card h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.plan-price {
+  margin: 6px 0 10px;
+  color: #7b5c28;
+  font-weight: 700;
+}
+
+.plan-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #555555;
+}
+
+@media (max-width: 860px) {
+  .form-card {
+    padding: 20px;
+  }
 }
